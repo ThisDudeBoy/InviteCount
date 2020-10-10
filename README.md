@@ -11,7 +11,7 @@
 
 InviteCount has a powerful dashboard which allow you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
 
-<img src="http://prntscr.com/uwlhjg" style="margin-right: 2px;width: 40%;" ></img>
+<img src="https://cdn.discordapp.com/attachments/754079986788466769/764408746814078976/Dxs7xZeYjLWbAAAAAElFTkSuQmCC.png" style="margin-right: 2px;width: 40%;" ></img>
 
 ## 💪 Features
 
