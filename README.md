@@ -1,7 +1,7 @@
 <img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="https://cdn.discordapp.com/avatars/577236734245470228/fbde03ab00ece83b9f8e4df3ad26531b.png?size=128">  
 
 # InviteCount
-[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/6QsXCfw)
+[![](https://camo.githubusercontent.com/b0aff08d232dbf37a384355b37c2d3fe1b67ebf9/68747470733a2f2f696d672e736869656c64732e696f2f646973636f72642f3736313534313034313135323938333035302e7376673f6c6f676f3d646973636f726426636f6c6f72423d373238394441)](https://discord.com/invite/6QsXCfw)
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/Androz2091)
 
