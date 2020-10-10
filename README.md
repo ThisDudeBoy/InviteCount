@@ -1,7 +1,7 @@
-<img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="ManageInvite" src="./assets/logo.png">  
+<img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="https://cdn.discordapp.com/avatars/577236734245470228/fbde03ab00ece83b9f8e4df3ad26531b.png?size=128">  
 
-# ManageInvite
-[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/f7f2P2q)
+# InviteCount
+[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/6QsXCfw)
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/Androz2091)
 
