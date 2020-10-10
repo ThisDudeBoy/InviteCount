@@ -1,23 +1,21 @@
 <img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="ManageInvite" src="./assets/logo.png">  
 
 # ManageInvite
-[![version](https://img.shields.io/github/package-json/v/Androz2091/ManageInvite?style=for-the-badge)](https://github.com/Androz2091/ManageInvite)
-[![discord](https://img.shields.io/discord/638685268777500672?style=for-the-badge&color=7289DA&label=Discord)](https://discord.gg/v26Sqqs)
-[![patreon](https://img.shields.io/endpoint.svg?url=https://shieldsio-patreon.herokuapp.com/Androz2091&style=for-the-badge)](https://patreon.com/Androz2091)
-[![issues](https://img.shields.io/github/issues/Androz2091/ManageInvite?style=for-the-badge)](https://github.com/Androz2091/ManageInvite)
+[![](https://img.shields.io/discord/745382663896039496.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/f7f2P2q)
+[![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
+[![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/Androz2091)
 
-> ManageInvite is used by + 2,000,000 users in + 10,000 servers!
+> InviteCount is used by + 500,000 users in + 300 servers!
 
 ## 🌐 Dashboard
 
-ManageInvite has a powerful dashboard which allow you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
+InviteCount has a powerful dashboard which allow you to manage your servers easily! Configure join/leave messages, change server prefix, server language, etc...
 
-<img src="./assets/selector.png" style="margin-right: 2px;width: 40%;" ></img>
-<img src="./assets/manage.png" style="margin-right: 2px;width: 40%;" ></img>
+<img src="http://prntscr.com/uwlhjg" style="margin-right: 2px;width: 40%;" ></img>
 
 ## 💪 Features
 
-> **ManageInvite** has a total of 34 commands!
+> **InviteCount** has a total of 34 commands!
 
 ### ⚙️ Config commands
 
@@ -70,7 +68,6 @@ Everyone can use user commands, there aren't restricted.
 ```
 +invites (@user)   Show your invites or the invites of the mentionned member.
 +leaderboard       Show the server leaderboard.
-+stats             Show a graph with the server joins.
 +membercount       Show members stats.
 ```
 
@@ -79,9 +76,8 @@ Everyone can use user commands, there aren't restricted.
 ```
 +help              Show the list of the commands.
 +botinfos          Show informations about ManageInvite.
-+ping              Show the ManageInvite's ping.
-+partners          Show the ManageInvite's partners.
-+add               Show the ManageInvite's invite link.
++ping              Show the InviteCount's ping.
++add               Show the InviteCount's invite link.
 +support           Join the support server.
 ```
 
@@ -92,3 +88,11 @@ Everyone can use user commands, there aren't restricted.
 +reload            Reload a command or languages.
 +servers-list      Show the servers list.
 ```
+
+## Links
+
+*   [Discord](https://discord.com/invite/6QsXCfw)
+*   [Github](https://github.com/ThisDudeBoy/InviteCount)
+*   [Dashboard](https://dash.invite-count.xyz)
+*   [ManageInvite](https://github.com/ManageInvite/)
+
