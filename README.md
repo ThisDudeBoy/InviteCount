@@ -15,7 +15,7 @@ InviteCount has a powerful dashboard which allow you to manage your servers easi
 
 ## 💪 Features
 
-> **InviteCount** has a total of 34 commands!
+> **InviteCount** has a total of 29 commands!
 
 ### ⚙️ Config commands
 
@@ -79,6 +79,7 @@ Everyone can use user commands, there aren't restricted.
 +ping              Show the InviteCount's ping.
 +add               Show the InviteCount's invite link.
 +support           Join the support server.
++creators          Show the creators of InviteCount.
 ```
 
 ### 👑 Owner commands
