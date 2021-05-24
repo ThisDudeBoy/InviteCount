@@ -5,7 +5,7 @@
 [![](https://img.shields.io/badge/discord.js-v12.0.0--dev-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/Androz2091)
 
-> InviteCount is used by + 500,000 users in + 300 servers!
+> InviteCount is used by + 1 500,000 users in + 1 300 servers!
 
 ## 🌐 Dashboard
 
