@@ -1,0 +1,32 @@
+const Command = require("../../structures/Command.js"),
+Discord = require("discord.js");
+
+class SetDMJoin extends Command {
+    constructor (client) {
+        super(client, {
+            name: "setdmjoin",
+            enabled: true,
+            aliases: [ "setdm" ],
+            clientPermissions: [ "EMBED_LINKS" ],
+            permLevel: 2
+        });
+    }
+
+    async run (message, args, data) {
+        
+        if(!data.guild.joinDM.enabled){
+            data.guild.joinDM.enabled = true;
+            data.guild.markModified("joinDM");
+            await data.guild.save();
+            return message.channel.send(message.language.setdmjoin.on());
+        }
+        if(data.guild.joinDM.enabled){
+            data.guild.joinDM.enabled = true;
+            data.guild.markModified("joinDM");
+            await data.guild.save();
+            return message.channel.send(message.language.setdmjoin.off());
+        }
+    }
+};
+          
+module.exports = SetDMJoin;
