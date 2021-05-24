@@ -37,18 +37,6 @@ module.exports = class {
             if(aLogs) aLogs.send({ embed: JSON.parse('${guildCreate}')});
         `);
 
-        // let joinEmbed = new Discord.MessageEmbed()
-        // .setTitle("Vous avez ajouté InviteCount | <:invites:756168551731036402>")
-        // .setDescription(`Salut **${inviter.username}**! Merci de m'avoir ajouté à votre serveur !\n\n **--------------** `)
-        // .addField("__**INFORMATIONS**__", welcomeMessage)
-        // .addField("__**AIDES**__", "Si vous avez besoin d'aide, rejoignez le serveur de support!\n \n**--------------**\n")
-        // .addField("__**LIENS**__", `> Ajouter le bot [[Cliquez ici]](https://discordapp.com/api/oauth2/authorize?client_id=${this.client.user.id}&permissions=2146958847&scope=bot)\n> Serveur support  [[Cliquez ici]](${this.client.config.discord})\n> SiteWeb  [[Cliquez ici]](https://invite-count.xyz/)`)
-        // .setFooter(this.client.config.footer)
-        // .setTimestamp()
-        // .setColor(this.client.config.color)
-    
-        // inviter.send(joinEmbed);
-
         await this.client.wait(5000);
         let client = this.client;
         let guildInvites = await guild.fetchInvites();
