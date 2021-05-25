@@ -15,7 +15,7 @@ InviteCount has a powerful dashboard which allow you to manage your servers easi
 
 ## 💪 Features
 
-> **InviteCount** has a total of 29 commands!
+> **InviteCount** has a total of 24 commands!
 
 ### ⚙️ Config commands
 
@@ -48,12 +48,6 @@ You can use `+config` to show your server global config.
 ```
 
 ```
-+addrank           Add a rank to the rank rewards.
-+removerank        Remove a rank from the rank rewards.
-+ranks             Show the rank rewards list.
-```
-
-```
 +removeinvites     Clear member or server invites.
 +restoreinvites    Restore member or server invites.
 +sync-invites      Synchronize ManageInvite database with server invites.
@@ -75,11 +69,9 @@ Everyone can use user commands, there aren't restricted.
 
 ```
 +help              Show the list of the commands.
-+botinfos          Show informations about ManageInvite.
-+ping              Show the InviteCount's ping.
++botinfos          Show informations about InviteCount.
 +add               Show the InviteCount's invite link.
 +support           Join the support server.
-+creators          Show the creators of InviteCount.
 ```
 
 ### 👑 Owner commands
@@ -94,6 +86,5 @@ Everyone can use user commands, there aren't restricted.
 
 *   [Discord](https://discord.com/invite/6QsXCfw)
 *   [Github](https://github.com/ThisDudeBoy/InviteCount)
-*   [Dashboard](https://dash.invite-count.xyz)
 *   [ManageInvite](https://github.com/ManageInvite/)
 
