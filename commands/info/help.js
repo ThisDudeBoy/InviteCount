@@ -19,7 +19,6 @@ class Help extends Command {
             .setDescription(message.language.help.description(message.guild.name, data.guild.prefix))
             .addField(message.language.help.admin.title(), message.language.help.admin.content(data.guild.prefix))
             .addField(message.language.help.moderation.title(), message.language.help.moderation.content(data.guild.prefix))
-            .addField(message.language.help.ranks.title(), message.language.help.ranks.content(data.guild.prefix))
             .addField(message.language.help.joinDM.title(), message.language.help.joinDM.content(data.guild.prefix));
 
             embed.addField(message.language.help.join.title(), message.language.help.join.content(data.guild.prefix))
