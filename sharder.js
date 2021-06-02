@@ -5,5 +5,5 @@ const manager = new ShardingManager("./index.js", {
     shardArgs: process.argv
 });
 
-console.log("InviteCount start in progress...");
+manager.on('shardCreate', shard => console.log(`InviteCount Shard #${shard.id} lauched !`));
 manager.spawn();
