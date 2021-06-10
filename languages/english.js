@@ -34,7 +34,20 @@ module.exports = {
         sendPerm: () => `${emojis.error} | I don't have the permission to send messages in this channel.`,
         missingAdmin: () => `${emojis.error} | I need \`Manage Guild\` permission to perform this action`
     },
+  glogs: {
+        err: () => `<:error:851490719934840872> | The actual channel is already this channel!`,
+        success: () => `<:succes:851491428563812382> | The logs channel has been succesfully set.`
+    },
+    glist: {
+        title: () => `🎁 Gievaways's list`,
+        description: (prefix) => `To start a giveaway, do \`${prefix}gstart\`. Only the giveaways that are not ended are displayeds`,
+        fields: {
+            name: () => `> List`,
+            message: (gs) => `${gs.map(ginfos=>`<:channel:851482936787730472> [${ginfos.prize}](${ginfos.messageURL}) : End the ${ginfos.endAt}`).join("\n")} `
+        },
+        err: () => `<:error:851490719934840872> | There isn't any giveaway not ended for this server`,
 
+    },
     help: {
         title: () => `ℹ InviteCount's Help Page`,
         description: (guildName, prefix) => `InviteCount allows you to manage the members of your server by looking at their invites.\n\nGo to the **documentation** by clicking [here](https://docs.invite-count.xyz/).`,
