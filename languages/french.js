@@ -142,7 +142,21 @@ module.exports = {
             content: () => `Commencez à inviter des gens et vous apparaitrez sur cette page !`
         }
     },
+ glogs: {
+        missing: () => `<:error:851490719934840872> | Le salon actuel est déja celui ci!`,
+        success: () => `<:succes:851491428563812382> | Le salon des logs des giveaways a bien été trouvé.`
+    },
 
+    glist: {
+        title: () => `🎁 Giveaways's list`,
+        description: (prefix) => `To start a giveaway, do \`${prefix}gstart\`. Only the giveaways that are not ended are displayeds`,
+        fields: {
+            name: () => `> List`,
+            message: (gs) => `${gs.map(ginfos=>`<:channel:851482936787730472> [${ginfos.prize}](${ginfos.messageURL}) : End the ${ginfos.endAt}`).join("\n")} `
+        },
+        err: () => `<:error:851490719934840872> | There isn't any giveaway not ended for this server`,
+
+    },
     userinfo: {
         title: (user) => `Compte ${user.tag} (${user.id})`,
         fields: {
