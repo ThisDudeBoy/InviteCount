@@ -29,7 +29,10 @@ const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
         await db.set('giveaways', newGiveawaysArray);
         return true;
     }
-
+  async refreshStorage() {
+        // This should make all shard refreshing their cache with the updated database
+        return client.shard.broadcastEval(() => this.giveawaysManager.getAllGiveaways());
+    }
 };
 // Creates ManageInvite class
 class ManageInvite extends Client {
