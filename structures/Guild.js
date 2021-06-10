@@ -10,7 +10,8 @@ module.exports = mongoose.model("Guild", new Schema({
     /* BASIC CONF */
     language: { type: String, default: "english" }, // Language of the guild
     prefix: { type: String, default: config.prefix }, // Default or custom prefix of the guild
-    
+    glogs: { type: String, default: null }, // Default or custom prefix of the guild
+
     /* INV CONF */
 
     joinDM: { type: Object, default: { // Message sent to a member when he joins

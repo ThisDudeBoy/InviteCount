@@ -30,6 +30,10 @@ module.exports = class {
 
         // If the message does not start with the prefix, cancel
         if(!message.content.toLowerCase().startsWith(guildData.prefix)){
+               memberData.messagesCount = memberData.messagesCount + 1;
+            memberData.markModified("messagesCount");
+            await memberData.save();
+
             return;
         }
 

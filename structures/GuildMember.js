@@ -28,6 +28,7 @@ module.exports = mongoose.model("GuildMember", new Schema({
     invitedBy: { type: String },
     usedInvite: { type: Object },
     joinData: { type: Object }, // { type: "normal" || "oauth" || "unknown" || "vanity", invite: inviteData || null }
+   messagesCount: { type: Number, default: 0 },
 
     /* BOT */
     bot: { type: Boolean, default: false }
