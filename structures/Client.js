@@ -1,11 +1,40 @@
 const { Client, Collection } = require("discord.js"),
-util = require("util"),
-path = require("path");
+    util = require("util"),
+    path = require("path");
+const { Database } = require('quickmongo');
+const config = require("../config.js")
+const { GiveawaysManager } = require("discord-giveaways");
+const db = new Database(config.mongodb);
+const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
+    async getAllGiveaways() {
+        return await db.get('giveaways');
+    }
 
+    async saveGiveaway(messageID, giveawayData) {
+        await db.push('giveaways', giveawayData);
+        return true;
+    }
+
+    async editGiveaway(messageID, giveawayData) {
+        const giveaways = await db.get('giveaways');
+        const newGiveawaysArray = giveaways.filter((giveaway) => giveaway.messageID !== messageID);
+        newGiveawaysArray.push(giveawayData);
+        await db.set('giveaways', newGiveawaysArray);
+        return true;
+    }
+
+    async deleteGiveaway(messageID) {
+        const data = await db.get('giveaways');
+        const newGiveawaysArray = data.filter((giveaway) => giveaway.messageID !== messageID);
+        await db.set('giveaways', newGiveawaysArray);
+        return true;
+    }
+
+};
 // Creates ManageInvite class
 class ManageInvite extends Client {
 
-    constructor (options) {
+    constructor(options) {
         super(options);
         // Config
         this.config = require("../config"); // Load the config file
@@ -24,19 +53,33 @@ class ManageInvite extends Client {
         // Databases
         this.guildMembersData = require("../structures/GuildMember"); // Used to store fake invites, bonus, etc...
         this.guildsData = require("../structures/Guild"); // Used to store prefixes, languages, join messages, etc...
-        // Dashboard
-        this.dash = require("../dashboard/app");
+
+
         this.states = {};
         this.spawned = false;
         this.knownGuilds = [];
+
+
+        this.giveawaysManager = new GiveawayManagerWithShardSupport(this, {
+            storage: false,
+            updateCountdownEvery: 10000,
+            default: {
+                botsCanWin: false,
+                exemptPermissions: [],
+                embedColorEnd: '#ED360E',
+                embedColor: "#efaa66",
+                reaction: '🎁'
+            }
+        });
+
     }
 
     // This function is used to load a command and add it to the collection
-    loadCommand (commandPath, commandName) {
+    loadCommand(commandPath, commandName) {
         try {
-            const props = new (require(`.${commandPath}${path.sep}${commandName}`))(this);
+            const props = new(require(`.${commandPath}${path.sep}${commandName}`))(this);
             props.conf.location = commandPath;
-            if (props.init){
+            if (props.init) {
                 props.init(this);
             }
             this.commands.set(props.help.name, props);
@@ -50,17 +93,17 @@ class ManageInvite extends Client {
     }
 
     // This function is used to unload a command (you need to load them again)
-    async unloadCommand (commandPath, commandName) {
+    async unloadCommand(commandPath, commandName) {
         let command;
-        if(this.commands.has(commandName)) {
+        if (this.commands.has(commandName)) {
             command = this.commands.get(commandName);
-        } else if(this.aliases.has(commandName)){
+        } else if (this.aliases.has(commandName)) {
             command = this.commands.get(this.aliases.get(commandName));
         }
-        if(!command){
+        if (!command) {
             return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
         }
-        if(command.shutdown){
+        if (command.shutdown) {
             await command.shutdown(this);
         }
         delete require.cache[require.resolve(`.${commandPath}${path.sep}${commandName}.js`)];
@@ -68,11 +111,11 @@ class ManageInvite extends Client {
     }
 
     // This function is used to find a guild data or create it
-    async findOrCreateGuild(param, isLean){
+    async findOrCreateGuild(param, isLean) {
         let Guild = this.guildsData;
-        return new Promise(async function (resolve, reject){
+        return new Promise(async function(resolve, reject) {
             let guild = (isLean ? await Guild.findOne(param).lean() : await Guild.findOne(param));
-            if(guild){
+            if (guild) {
                 resolve(guild);
             } else {
                 guild = new Guild(param);
@@ -83,11 +126,11 @@ class ManageInvite extends Client {
     }
 
     // This function is used to find a guild member data or create it
-    async findOrCreateGuildMember(param, isLean){
+    async findOrCreateGuildMember(param, isLean) {
         let GuildMember = this.guildMembersData;
-        return new Promise(async function (resolve, reject){
+        return new Promise(async function(resolve, reject) {
             let guildMember = (isLean ? await GuildMember.findOne(param).lean() : await GuildMember.findOne(param));
-            if(guildMember){
+            if (guildMember) {
                 resolve(guildMember);
             } else {
                 guildMember = new GuildMember(param);
@@ -97,57 +140,57 @@ class ManageInvite extends Client {
         });
     }
 
-    async resolveMember(search, guild){
+    async resolveMember(search, guild) {
         let member = null;
-        if(!search || typeof search !== "string") return;
+        if (!search || typeof search !== "string") return;
         // Try ID search
-        if(search.match(/^<@!?(\d+)>$/)){
+        if (search.match(/^<@!?(\d+)>$/)) {
             let id = search.match(/^<@!?(\d+)>$/)[1];
             member = await guild.members.fetch(id).catch(() => {});
-            if(member) return member;
+            if (member) return member;
         }
         // Try username search
-        if(search.match(/^!?([^#]+)#(\d+)$/)){
+        if (search.match(/^!?([^#]+)#(\d+)$/)) {
             guild = await guild.members.fetch();
             member = guild.members.cache.find((m) => m.user.tag === search);
-            if(member) return member;
+            if (member) return member;
         }
         member = await guild.members.fetch(search).catch(() => {});
         return member;
     }
 
-    async resolveUser(search){
+    async resolveUser(search) {
         let user = null;
-        if(!search || typeof search !== "string") return;
+        if (!search || typeof search !== "string") return;
         // Try ID search
-        if(search.match(/^!?([^#]+)#(\d+)$/)){
+        if (search.match(/^!?([^#]+)#(\d+)$/)) {
             let id = search.match(/^!?([^#]+)#(\d+)$/)[1];
             user = this.users.fetch(id).catch((err) => {});
-            if(user) return user;
+            if (user) return user;
         }
         // Try username search
-        if(search.match(/^!?([^#]+)#(\d+)$/)){
+        if (search.match(/^!?([^#]+)#(\d+)$/)) {
             let username = search.match(/^!?([^#]+)#(\d+)$/)[0];
             let discriminator = search.match(/^!?([^#]+)#(\d+)$/)[1];
             user = this.users.find((u) => u.username === username && u.discriminator === discriminator);
-            if(user) return user;
+            if (user) return user;
         }
         user = await this.users.fetch(search).catch(() => {});
         return user;
     }
 
     getLevel(message) {
-		let permlvl = 0;
-		const permOrder = this.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
-		while (permOrder.length) {
-			const currentLevel = permOrder.shift();
-			if(message.guild && currentLevel.guildOnly) continue;
-			if(currentLevel.check(message)) {
-				permlvl = currentLevel.level;
-				break;
-			}
-		}
-		return permlvl;
+        let permlvl = 0;
+        const permOrder = this.permLevels.slice(0).sort((p, c) => p.level < c.level ? 1 : -1);
+        while (permOrder.length) {
+            const currentLevel = permOrder.shift();
+            if (message.guild && currentLevel.guildOnly) continue;
+            if (currentLevel.check(message)) {
+                permlvl = currentLevel.level;
+                break;
+            }
+        }
+        return permlvl;
     }
 }
 
