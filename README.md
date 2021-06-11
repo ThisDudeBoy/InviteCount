@@ -53,6 +53,14 @@ You can use `+config` to show your server global config.
 +sync-invites      Synchronize ManageInvite database with server invites.
 ```
 
+```
++gstart     Create a giveaway
++gend     Stop a giveaway
++greroll     Make a new winner from a giveaway
++glogs     Set logs channel for giveaways
++glist     List of all currents givaways
++messages     Show your message or the messages of the mentionned member.
+```
 ### 👤 User commands
 
 Everyone can use user commands, there aren't restricted.
@@ -82,9 +90,12 @@ Everyone can use user commands, there aren't restricted.
 +servers-list      Show the servers list.
 ```
 
+If you want to see the bot before installing them, just test [Allegoria](https://discordapp.com/oauth2/authorize?client_id=850080680578383872&scope=bot&permissions=2146958847)
+The main bot [InviteCount](https://top.gg/bot/577236734245470228/invite) don't use this code anymore. You can test the new version by adding them on your discord.
 ## Links
 
 *   [Discord](https://discord.com/invite/6QsXCfw)
 *   [Github](https://github.com/ThisDudeBoy/InviteCount)
+*   [InviteCount Discord Bot 24/7 Online (New version)](https://top.gg/bot/577236734245470228/invite)
 *   [ManageInvite](https://github.com/ManageInvite/)
 
