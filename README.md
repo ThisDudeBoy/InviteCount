@@ -60,7 +60,7 @@ You can use `+config` to show your server global config.
 +greroll     Make a new winner from a giveaway
 +glogs     Set logs channel for giveaways
 +glist     List of all currents givaways
-+messages     Show your message or the messages of the mentionned member.
++messages     Show your messages or the messages of the mentionned member.
 ```
 ### 👤 User commands
 
