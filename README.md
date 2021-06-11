@@ -53,6 +53,7 @@ You can use `+config` to show your server global config.
 +sync-invites      Synchronize ManageInvite database with server invites.
 ```
 
+### 🎉 Giveaways commands
 ```
 +gstart     Create a giveaway
 +gend     Stop a giveaway
