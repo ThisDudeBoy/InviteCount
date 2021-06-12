@@ -35,7 +35,15 @@ const init = async () => {
         client.on(eventName, (...args) => event.run(...args));
         delete require.cache[require.resolve(`./events/${file}`)];
     });
-    
+     const GFiles = await readdir("./giveaways-events/");
+    console.log(`Loading a total of ${GFiles.length} events.`);
+    GFiles.forEach((file) => {
+        const eventName = file.split(".")[0];
+        console.log(`Loading giveaways Event: ${eventName}`);
+        const event = require(`./giveaways-events/${file}`);
+        client.giveawaysManager.on(eventName, (...args) => event.execute(...args, client));
+        delete require.cache[require.resolve(`./giveaways-events/${file}`)];
+    });
     client.login(client.config.token); // Log in to the discord api
 
     // connect to mongoose database

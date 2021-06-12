@@ -5,6 +5,8 @@ const { Database } = require('quickmongo');
 const config = require("../config.js")
 const { GiveawaysManager } = require("discord-giveaways");
 const db = new Database(config.mongodb);
+  if ((await db.get('giveaways')) === null) await db.set('giveaways', []);
+
 const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
     async getAllGiveaways() {
         return await db.get('giveaways');
