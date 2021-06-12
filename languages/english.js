@@ -468,18 +468,18 @@ Type \`cancel\` to abort. ${str}
         content: (total, percent, from, to) => `**${total}** members (i.e. **${percent}%** of the server) have joined the server from ${from} to ${to}:`,
         invalid: () => `You must enter a valid number of days (greater than 1 and lower than 1000) to be displayed!`,
         months: () =>[
-            "Janv",
-            "Fév",
-            "Mars",
-            "Avr",
-            "Mai",
-            "Juin",
-            "Juillet",
-            "Août",
+            "Jan",
+            "Feb",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "Aug",
             "Sept",
             "Oct",
             "Nov",
-            "Déc"
+            "Dec"
         ],
         
     },
