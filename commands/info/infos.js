@@ -39,7 +39,13 @@ class Infos extends Command {
                 Math.round(this.ws.ping)
             ];
         });
-
+  let resultsa = await this.client.shard.broadcastEval(() => {
+            return this.guilds.cache.array();
+        });
+        let guilds = [];
+        resultsa.forEach((a) => guilds = [...guilds, ...a]);
+        let usersCountW = 0;
+        guilds.forEach(g => usersCountW = usersCountW + g.memberCount)
         let embed = new Discord.MessageEmbed()
         .setColor(data.color)
         .setFooter(data.footer)
@@ -47,7 +53,7 @@ class Infos extends Command {
         .setDescription(message.language.infos.content(message.guild.name, data.guild.prefix))
         .setAuthor("InviteCount | v1.5.0", this.client.user.displayAvatarURL())
         .addField(message.language.infos.dev.title(), message.language.infos.dev.content(uptime), true)
-        .addField(title, message.language.infos.statistics.content(guildsCount, channelsCount, usersCount), false)
+        .addField(title, message.language.infos.statistics.content(guildsCount, channelsCount, usersCountW), false)
         .addField(message.language.infos.link.title(), message.language.infos.link.content(), false)
 
         message.channel.send(embed);
