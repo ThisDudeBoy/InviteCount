@@ -107,7 +107,7 @@ module.exports = {
 
         dev: {
             title: () => `**Developpers :**`,
-            content: (uptime) => `[Alex.#7331](https://github.com/ThisDudeBoy)\n[Alboom#2121](https://chillbot.me)`
+            content: (uptime) => `[Alex.#7331](https://github.com/ThisDudeBoy)\n[Alboom#2121](https://chillbot.me)\n[BXEE](https://github.com/BXEEOFFI)`
         },
         statistics: {
             title: () => `**Inspired from :**`,
