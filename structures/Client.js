@@ -5,8 +5,7 @@ const { Database } = require('quickmongo');
 const config = require("../config.js")
 const { GiveawaysManager } = require("discord-giveaways");
 const db = new Database(config.mongodb);
-  if ((await db.get('giveaways')) === null) await db.set('giveaways', []);
-
+  
 const GiveawayManagerWithShardSupport = class extends GiveawaysManager {
     async getAllGiveaways() {
         return await db.get('giveaways');
@@ -58,7 +57,7 @@ class ManageInvite extends Client {
         // Databases
         this.guildMembersData = require("../structures/GuildMember"); // Used to store fake invites, bonus, etc...
         this.guildsData = require("../structures/Guild"); // Used to store prefixes, languages, join messages, etc...
-
+        this.db = db; 
 
         this.states = {};
         this.spawned = false;
