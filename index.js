@@ -14,7 +14,9 @@ client = new ManageInvite();
 
 
 const init = async () => {
-
+  let a = await client.db.get('giveaways')
+         if (a === null) await client.db.set('giveaways', []);
+        
     // Search for all commands
     let directories = await readdir("./commands/");
     directories.forEach(async (dir) => {
