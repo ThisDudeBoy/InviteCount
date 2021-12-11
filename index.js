@@ -86,24 +86,24 @@ const init = async () => {
 
         }
         const shardlog = new Discord.WebhookClient('756874584149459065', '**');
-        const gay1 = `<:online:757044247269605386> | Shard #${shardID} is ready!`;
-        shardlog.send(gay1);
+        const postMessage = `<:online:757044247269605386> | Shard #${shardID} is ready!`;
+        shardlog.send(postMessage);
     });
     client.on("shardDisconnect", (shardID) => {
         const shardlog = new Discord.WebhookClient('756874584149459065', '**');
-        const gay = `<a:loading:753232044485509268> | Shard #${shardID} is disconnected...`;
-        shardlog.send(gay);
+        const postMessage = `<a:loading:753232044485509268> | Shard #${shardID} is disconnected...`;
+        shardlog.send(postMessage);
         
     });
     client.on("shardReconnecting", (shardID) => {
         const shardlog = new Discord.WebhookClient('756874584149459065', '**');
-        const gay2 = `<:inactif:757044197336285252> | Shard #${shardID} is reconnecting...`;
-        shardlog.send(gay2);
+        const postMessage = `<:inactif:757044197336285252> | Shard #${shardID} is reconnecting...`;
+        shardlog.send(postMessage);
     });
     client.on("shardResume", (shardID) => {
         const shardlog = new Discord.WebhookClient('756874584149459065', '**');
-        const gay3 = `<:online:757044247269605386> | Shard #${shardID} has resumed!`;
-        shardlog.send(gay3);
+        const postMessage = `<:online:757044247269605386> | Shard #${shardID} has resumed!`;
+        shardlog.send(postMessage);
     });
 };
 init();
