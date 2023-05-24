@@ -90,8 +90,6 @@ Everyone can use user commands, there aren't restricted.
 +reload            Reload a command or languages.
 +servers-list      Show the servers list.
 ```
-
-If you want to see the bot before installing them, just test [Allegoria](https://discordapp.com/oauth2/authorize?client_id=850080680578383872&scope=bot&permissions=2146958847).<br>
 The main bot [InviteCount](https://top.gg/bot/577236734245470228/invite) don't use this code anymore.<br>You can test the new version by adding them on your discord.
 ## Links
 
