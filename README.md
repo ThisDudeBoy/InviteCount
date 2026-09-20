@@ -3,8 +3,6 @@
 </a>
 
 # InviteCount
-
-# InviteCount
 [![](https://img.shields.io/discord/753213979706261604.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/6QsXCfw)
 [![](https://img.shields.io/badge/discord.js-v14.14.1-blue.svg?logo=npm)](https://github.com/discordjs)
 [![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/chillbotdiscord)
