@@ -1,4 +1,6 @@
-<img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="[https://cdn.discordapp.com/avatars/577236734245470228/fbde03ab00ece83b9f8e4df3ad26531b.png?size=128](https://invite-count.xyz/images/logo.png)">  
+<a href="https://invite-count.xyz/">
+  <img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="https://invite-count.xyz/images/logo.png">
+</a>
 
 # InviteCount
 [![](https://img.shields.io/discord/753213979706261604.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/6QsXCfw)
