@@ -1,5 +1,14 @@
 const Command = require("../../structures/Command.js"),
-{ EmbedBuilder } = require("discord.js");
+{ 
+    ContainerBuilder, 
+    TextDisplayBuilder, 
+    SeparatorBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    ButtonStyle,
+    MessageFlags 
+} = require("discord.js"),
+componentsV2 = require("../../helpers/componentsV2.js");
 
 class Support extends Command {
     constructor (client) {
@@ -13,16 +22,47 @@ class Support extends Command {
     }
 
     async run (message, args, data) {
+        const ownerId = message.author.id;
+        const color = componentsV2.parseColor(this.client.config.color);
 
-        let embed = new EmbedBuilder()
-            .setAuthor({ name: "InviteCount", iconURL: this.client.user.displayAvatarURL() })
-            .setDescription(message.language.support.content(this.client.user.id))
-            .setColor(this.client.config.color)
-            .setFooter({ text: message.language.support.requested(message.author.username), iconURL: message.author.displayAvatarURL() });
-        message.channel.send({ embeds: [embed] });
+        const container = new ContainerBuilder()
+            .setAccentColor(color);
 
+        const title = new TextDisplayBuilder()
+            .setContent(`## InviteCount`);
+        container.addTextDisplayComponents(title);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const descText = new TextDisplayBuilder()
+            .setContent(message.language.support.content(this.client.user.id));
+        container.addTextDisplayComponents(descText);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const buttonRow = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setLabel('Join Support Server')
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(require("../../config").discord || 'https://discord.gg/support'),
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('close', ownerId))
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger)
+            );
+
+        container.addActionRowComponents(buttonRow);
+
+        const footer = new TextDisplayBuilder()
+            .setContent(`-# Requested by ${message.author.username}`);
+        container.addTextDisplayComponents(footer);
+
+        message.channel.send({ 
+            components: [container], 
+            flags: MessageFlags.IsComponentsV2 
+        });
     }
-
 };
 
 module.exports = Support;

@@ -1,5 +1,14 @@
 const Command = require("../../structures/Command.js"),
-{ EmbedBuilder } = require("discord.js");
+{ 
+    ContainerBuilder, 
+    TextDisplayBuilder, 
+    SeparatorBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    ButtonStyle,
+    MessageFlags 
+} = require("discord.js"),
+componentsV2 = require("../../helpers/componentsV2.js");
 
 class RemoveBonus extends Command {
     constructor (client) {
@@ -13,28 +22,57 @@ class RemoveBonus extends Command {
     }
 
     async run (message, args, data) {
+        const ownerId = message.author.id;
+        const color = componentsV2.parseColor(data.color);
 
         let bonus = args[0];
-        if(!bonus) return message.channel.send(message.language.removebonus.errors.bonus.missing(data.guild.prefix));
-        if(isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) return message.channel.send(message.language.removebonus.errors.bonus.incorrect(data.guild.prefix));
+        if (!bonus) return message.channel.send(componentsV2.errorEmbed('Error', message.language.removebonus.errors.bonus.missing(data.guild.prefix)));
+        if (isNaN(bonus) || parseInt(bonus) < 1 || !Number.isInteger(parseInt(bonus))) {
+            return message.channel.send(componentsV2.errorEmbed('Error', message.language.removebonus.errors.bonus.incorrect(data.guild.prefix)));
+        }
 
         let member = message.mentions.members.first() || await this.client.resolveMember(args.slice(1).join(" "), message.guild);
-        if(!member) return message.channel.send(message.language.removebonus.errors.member.missing(data.guild.prefix));
+        if (!member) return message.channel.send(componentsV2.errorEmbed('Error', message.language.removebonus.errors.member.missing(data.guild.prefix)));
     
         let memberData = await this.client.findOrCreateGuildMember({ id: member.id, guildID: message.guild.id, bot: member.user.bot });
         memberData.bonus -= parseInt(bonus);
         memberData.markModified("bonus");
         await memberData.save();
 
-        let embed = new EmbedBuilder()
-            .setAuthor({ name: message.language.removebonus.title() })
-            .setDescription(message.language.removebonus.field(data.guild.prefix, member))
-            .setColor(data.color)
-            .setFooter({ text: data.footer });
+        const container = new ContainerBuilder()
+            .setAccentColor(color);
 
-        message.channel.send({ embeds: [embed] });
+        const title = new TextDisplayBuilder()
+            .setContent(`## ${message.language.removebonus.title()}`);
+        container.addTextDisplayComponents(title);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const descText = new TextDisplayBuilder()
+            .setContent(`Removed **${bonus}** bonus invites from **${member.user.tag}**\n\n${message.language.removebonus.field(data.guild.prefix, member)}`);
+        container.addTextDisplayComponents(descText);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const buttonRow = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('close', ownerId))
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger)
+            );
+
+        container.addActionRowComponents(buttonRow);
+
+        const footer = new TextDisplayBuilder()
+            .setContent(`-# ${data.footer}`);
+        container.addTextDisplayComponents(footer);
+
+        message.channel.send({ 
+            components: [container], 
+            flags: MessageFlags.IsComponentsV2 
+        });
     }
-
 };
 
 module.exports = RemoveBonus;

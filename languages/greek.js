@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**Πληροφορίες**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Ανάπτυξη:** Alex\n <:arrow:766358167382523944> **Βιβλιοθήκη:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Χρόνος λειτουργίας** ${uptime}\n <:arrow:766358167382523944> **Ημερομηνία δημιουργίας:** 12 Μαΐου 2019`
+            content: (uptime) => `<:arrow:766358167382523944> **Ανάπτυξη:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Βιβλιοθήκη:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Χρόνος λειτουργίας** ${uptime}\n <:arrow:766358167382523944> **Ημερομηνία δημιουργίας:** 12 Μαΐου 2019`
         },
         statistics: {
             title: () => `**Στατιστικά**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**Ανάπτυξη :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Εμπνευσμένα από :**`,

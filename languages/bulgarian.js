@@ -85,7 +85,7 @@ module.exports = {
 
         dev: {
             title: () => `**Информация**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Разработчици:** Alex\n <:arrow:766358167382523944> **Библиотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Време на работа** ${uptime}\n <:arrow:766358167382523944> **Дата на създаване:** 12 май 2019 г.`
+            content: (uptime) => `<:arrow:766358167382523944> **Разработчици:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Библиотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Време на работа** ${uptime}\n <:arrow:766358167382523944> **Дата на създаване:** 12 май 2019 г.`
         },
         statistics: {
             title: () => `**Статистика**`,
@@ -103,7 +103,7 @@ module.exports = {
 
         dev: {
             title: () => `**Разработчици :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Вдъхновено от :**`,

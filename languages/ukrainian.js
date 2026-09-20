@@ -85,7 +85,7 @@ module.exports = {
 
         dev: {
             title: () => `**Інформація**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Розробники:** Alex\n <:arrow:766358167382523944> **Бібліотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Час роботи** ${uptime}\n <:arrow:766358167382523944> **Дата створення:** 12 травня 2019 р.`
+            content: (uptime) => `<:arrow:766358167382523944> **Розробники:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Бібліотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Час роботи** ${uptime}\n <:arrow:766358167382523944> **Дата створення:** 12 травня 2019 р.`
         },
         statistics: {
             title: () => `**Статистика**`,
@@ -103,7 +103,7 @@ module.exports = {
 
         dev: {
             title: () => `**Розробники :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Вдохновлено :**`,

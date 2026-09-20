@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**जानकारी**`,
-            content: (uptime) => `<:arrow:766358167382523944> **डेवलपर्स:** Alex\n <:arrow:766358167382523944> **लाइब्रेरी:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **अपटाइम** ${uptime}\n <:arrow:766358167382523944> **निर्माण तिथि:** 12 मई 2019`
+            content: (uptime) => `<:arrow:766358167382523944> **डेवलपर्स:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **लाइब्रेरी:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **अपटाइम** ${uptime}\n <:arrow:766358167382523944> **निर्माण तिथि:** 12 मई 2019`
         },
         statistics: {
             title: () => `**आंकड़े**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**डेवलपर :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**से प्रेरित :**`,

@@ -1,5 +1,16 @@
 const Command = require("../../structures/Command.js"),
-{ EmbedBuilder } = require("discord.js");
+{ 
+    ContainerBuilder, 
+    TextDisplayBuilder, 
+    SeparatorBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    ButtonStyle,
+    SectionBuilder,
+    ThumbnailBuilder,
+    MessageFlags 
+} = require("discord.js"),
+componentsV2 = require("../../helpers/componentsV2.js");
 
 class TestDMJoin extends Command {
     constructor (client) {
@@ -13,21 +24,73 @@ class TestDMJoin extends Command {
     }
 
     async run (message, args, data) {
-        
-        let embed = new EmbedBuilder()
-            .setTitle(message.language.testdmjoin.title())
-            .setDescription(message.language.testdmjoin.description())
-            .addFields(
-                { name: message.language.testdmjoin.fields.enabled(), value: (data.guild.joinDM.enabled ? message.language.testdmjoin.enabled(data.guild.prefix) : message.language.testdmjoin.disabled(data.guild.prefix)) },
-                { name: message.language.testdmjoin.fields.message(), value: (data.guild.joinDM.message || message.language.testdmjoin.notDefineds.message(data.guild.prefix)) }
-            )
-            .setThumbnail(message.author.avatarURL())
-            .setColor(data.color)
-            .setFooter({ text: data.footer })
-            .setTimestamp();
-        message.channel.send({ embeds: [embed] });
+        const ownerId = message.author.id;
+        const color = componentsV2.parseColor(data.color);
 
-        if(data.guild.joinDM.enabled && data.guild.joinDM.message){
+        const container = new ContainerBuilder()
+            .setAccentColor(color);
+
+        const title = new TextDisplayBuilder()
+            .setContent(`## ${message.language.testdmjoin.title()}`);
+        container.addTextDisplayComponents(title);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const descText = new TextDisplayBuilder()
+            .setContent(message.language.testdmjoin.description());
+        
+        const avatarUrl = message.author.avatarURL();
+        if (avatarUrl) {
+            try {
+                const descSection = new SectionBuilder()
+                    .addTextDisplayComponents(descText)
+                    .setThumbnailAccessory(
+                        new ThumbnailBuilder()
+                            .setURL(avatarUrl)
+                            .setDescription('Your Avatar')
+                    );
+                container.addSectionComponents(descSection);
+            } catch (e) {
+                container.addTextDisplayComponents(descText);
+            }
+        } else {
+            container.addTextDisplayComponents(descText);
+        }
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const enabledSection = new TextDisplayBuilder()
+            .setContent(`${message.language.testdmjoin.fields.enabled()}\n${(data.guild.joinDM.enabled ? message.language.testdmjoin.enabled(data.guild.prefix) : message.language.testdmjoin.disabled(data.guild.prefix))}`);
+        container.addTextDisplayComponents(enabledSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const messageSection = new TextDisplayBuilder()
+            .setContent(`${message.language.testdmjoin.fields.message()}\n${(data.guild.joinDM.message || message.language.testdmjoin.notDefineds.message(data.guild.prefix))}`);
+        container.addTextDisplayComponents(messageSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const buttonRow = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('close', ownerId))
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger)
+            );
+
+        container.addActionRowComponents(buttonRow);
+
+        const footer = new TextDisplayBuilder()
+            .setContent(`-# ${data.footer}`);
+        container.addTextDisplayComponents(footer);
+
+        message.channel.send({ 
+            components: [container], 
+            flags: MessageFlags.IsComponentsV2 
+        });
+
+        if (data.guild.joinDM.enabled && data.guild.joinDM.message) {
             message.author.send(this.client.functions.formatMessage(
                 data.guild.joinDM.message,
                 message.member,
@@ -48,7 +111,6 @@ class TestDMJoin extends Command {
                 return message.channel.send(message.language.errors.sendPerm());
             });
         }
-
     }
 }
 

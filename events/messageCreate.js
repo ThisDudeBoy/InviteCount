@@ -29,7 +29,29 @@ module.exports = class {
         let memberData = await this.client.findOrCreateGuildMember({ id: message.author.id, guildID: message.guild.id, bot: message.author.bot });
         data.member = memberData;
 
-        if(!message.content.toLowerCase().startsWith(guildData.prefix)){
+        let usedPrefix = false;
+        let usedNoPrefix = false;
+        let commandName = null;
+        let args = [];
+
+        if (message.content.toLowerCase().startsWith(guildData.prefix)) {
+            usedPrefix = true;
+            args = message.content.slice(guildData.prefix.length).trim().split(/ +/g);
+            commandName = args.shift().toLowerCase();
+        } else if (guildData.noPrefix) {
+            const messageArgs = message.content.trim().split(/ +/g);
+            const potentialCommand = messageArgs[0].toLowerCase();
+            
+            const cmd = this.client.commands.get(potentialCommand) || this.client.commands.get(this.client.aliases.get(potentialCommand));
+            
+            if (cmd) {
+                usedNoPrefix = true;
+                commandName = potentialCommand;
+                args = messageArgs.slice(1);
+            }
+        }
+
+        if (!usedPrefix && !usedNoPrefix) {
             memberData.messagesCount = memberData.messagesCount + 1;
             memberData.markModified("messagesCount");
             await memberData.save();
@@ -50,10 +72,7 @@ module.exports = class {
             cooldown.delete(message.author.id)
         }, cseconds * 1000)
 
-        const args = message.content.slice(guildData.prefix.length).trim().split(/ +/g);
-        const command = args.shift().toLowerCase();
-
-        const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
+        const cmd = this.client.commands.get(commandName) || this.client.commands.get(this.client.aliases.get(commandName));
 
         if(!cmd) return;
         else message.cmd = cmd;

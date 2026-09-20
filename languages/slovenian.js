@@ -82,7 +82,7 @@ module.exports = {
         content: () => `InviteCount vám umožňuje spravovať členov vášho servera sledovaním ich pozván.`,
         dev: {
             title: () => `**Informácie**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Vývojári:** Alex\n <:arrow:766358167382523944> **Knižnica:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Čas delovky** ${uptime}\n <:arrow:766358167382523944> **Dátum vytvorenia:** 12. mája 2019`
+            content: (uptime) => `<:arrow:766358167382523944> **Vývojári:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Knižnica:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Čas delovky** ${uptime}\n <:arrow:766358167382523944> **Dátum vytvorenia:** 12. mája 2019`
         },
         statistics: {
             title: () => `**Štatistika**`,
@@ -99,7 +99,7 @@ module.exports = {
         content: () => `InviteCount vám umožňuje spravovať členov vášho servera sledovaním ich pozván.`,
         dev: {
             title: () => `**Vývojári :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Inšpirované :**`,

@@ -85,7 +85,7 @@ module.exports = {
 
         dev: {
             title: () => `**Информације**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Програмери:** Alex\n <:arrow:766358167382523944> **Библиотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Време рада** ${uptime}\n <:arrow:766358167382523944> **Датум стварања:** 12. мај 2019.`
+            content: (uptime) => `<:arrow:766358167382523944> **Програмери:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Библиотека:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Време рада** ${uptime}\n <:arrow:766358167382523944> **Датум стварања:** 12. мај 2019.`
         },
         statistics: {
             title: () => `**Статистика**`,
@@ -103,7 +103,7 @@ module.exports = {
 
         dev: {
             title: () => `**Програмери :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Инспирисано :**`,

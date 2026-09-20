@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**情報**`,
-            content: (uptime) => `<:arrow:766358167382523944> **開発者:** Alex\n <:arrow:766358167382523944> **ライブラリ:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **稼働時間** ${uptime}\n <:arrow:766358167382523944> **作成日:** 2019年5月12日`
+            content: (uptime) => `<:arrow:766358167382523944> **開発者:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **ライブラリ:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **稼働時間** ${uptime}\n <:arrow:766358167382523944> **作成日:** 2019年5月12日`
         },
         statistics: {
             title: () => `**統計**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**開発者 :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**インスピレーション元 :**`,

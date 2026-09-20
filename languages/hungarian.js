@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**Információ**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Fejlesztők:** Alex\n <:arrow:766358167382523944> **Könyvtár:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Üzemidő** ${uptime}\n <:arrow:766358167382523944> **Létrehozás dátuma:** 2019. május 12.`
+            content: (uptime) => `<:arrow:766358167382523944> **Fejlesztők:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Könyvtár:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Üzemidő** ${uptime}\n <:arrow:766358167382523944> **Létrehozás dátuma:** 2019. május 12.`
         },
         statistics: {
             title: () => `**Statisztika**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**Fejlesztők :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Inspirálva :**`,

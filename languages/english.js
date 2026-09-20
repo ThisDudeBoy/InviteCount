@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**Informations**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Developers:** Alex\n <:arrow:766358167382523944> **Library:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Uptime** ${uptime}\n <:arrow:766358167382523944> **Creation Date:** 12 mai 2019`
+            content: (uptime) => `<:arrow:766358167382523944> **Developers:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Library:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Uptime** ${uptime}\n <:arrow:766358167382523944> **Creation Date:** 12 mai 2019`
         },
         statistics: {
             title: () => `**Statistics**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**Developers :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Inspired from :**`,
@@ -210,10 +210,10 @@ module.exports = {
         description: (guild) => `
         Total of **${guild.members.cache.size}**  members (**${guild.members.cache.filter((m) => !m.user.bot).size}** humans and **${guild.members.cache.filter((m) => m.user.bot).size}** bots)
 
-        ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence.status === "dnd"  && !m.user.bot).size} members dnd
-        ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence.status === "online" && !m.user.bot).size} members online
-        ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence.status === "idle" && !m.user.bot).size} members idle
-        ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence.status === "offline" && !m.user.bot).size} members offline`
+        ➔ ${emojis.dnd} | ${guild.members.cache.filter((m) => m.presence && m.presence.status === "dnd"  && !m.user.bot).size} members dnd
+        ➔ ${emojis.online} | ${guild.members.cache.filter((m) => m.presence && m.presence.status === "online" && !m.user.bot).size} members online
+        ➔ ${emojis.idle} | ${guild.members.cache.filter((m) => m.presence && m.presence.status === "idle" && !m.user.bot).size} members idle
+        ➔ ${emojis.offline} | ${guild.members.cache.filter((m) => m.presence && m.presence.status === "offline" && !m.user.bot).size} members offline`
     },
 
     addbonus: {

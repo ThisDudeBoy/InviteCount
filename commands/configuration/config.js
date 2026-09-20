@@ -1,5 +1,14 @@
 const Command = require("../../structures/Command.js"),
-{ EmbedBuilder } = require("discord.js");
+{ 
+    ContainerBuilder, 
+    TextDisplayBuilder, 
+    SeparatorBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    ButtonStyle,
+    MessageFlags 
+} = require("discord.js"),
+componentsV2 = require("../../helpers/componentsV2.js");
 
 class Config extends Command {
     constructor (client) {
@@ -13,6 +22,8 @@ class Config extends Command {
     }
 
     async run (message, args, data) {
+        const ownerId = message.author.id;
+        const color = componentsV2.parseColor(data.color);
 
         let joinSuccess = data.guild.join.enabled
         && data.guild.join.message
@@ -27,16 +38,55 @@ class Config extends Command {
         && data.guild.leave.channel
         && message.guild.channels.cache.get(data.guild.leave.channel);
 
-        let embed = new EmbedBuilder()
-            .setTitle(message.language.config.title(message.guild.name))
-            .addFields(
-                { name: message.language.config.join.title(joinSuccess), value: message.language.config.join.content(message.guild, data), inline: true },
-                { name: message.language.config.leave.title(leaveSuccess), value: message.language.config.leave.content(message.guild, data), inline: true },
-                { name: message.language.config.joinDM.title(joinDMSuccess), value: message.language.config.joinDM.content(message.guild, data), inline: true }
-            )
-            .setColor(data.color)
-            .setFooter({ text: data.footer });
-        message.channel.send({ embeds: [embed] });
+        const container = new ContainerBuilder()
+            .setAccentColor(color);
+
+        const title = new TextDisplayBuilder()
+            .setContent(`## ${message.language.config.title(message.guild.name)}`);
+        container.addTextDisplayComponents(title);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const joinSection = new TextDisplayBuilder()
+            .setContent(`${message.language.config.join.title(joinSuccess)}\n${message.language.config.join.content(message.guild, data)}`);
+        container.addTextDisplayComponents(joinSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const leaveSection = new TextDisplayBuilder()
+            .setContent(`${message.language.config.leave.title(leaveSuccess)}\n${message.language.config.leave.content(message.guild, data)}`);
+        container.addTextDisplayComponents(leaveSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const joinDMSection = new TextDisplayBuilder()
+            .setContent(`${message.language.config.joinDM.title(joinDMSuccess)}\n${message.language.config.joinDM.content(message.guild, data)}`);
+        container.addTextDisplayComponents(joinDMSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const buttonRow = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('config_refresh', ownerId))
+                    .setLabel('Refresh')
+                    .setStyle(ButtonStyle.Primary),
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('close', ownerId))
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger)
+            );
+
+        container.addActionRowComponents(buttonRow);
+
+        const footer = new TextDisplayBuilder()
+            .setContent(`-# ${data.footer}`);
+        container.addTextDisplayComponents(footer);
+
+        message.channel.send({ 
+            components: [container], 
+            flags: MessageFlags.IsComponentsV2 
+        });
     }
 };
           

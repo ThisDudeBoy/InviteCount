@@ -93,7 +93,7 @@ module.exports = {
 
         dev: {
             title: () => `**Informace**`,
-            content: (uptime) => `<:arrow:766358167382523944> **Vývojáři:** Alex\n <:arrow:766358167382523944> **Knihovna:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Doba provozu** ${uptime}\n <:arrow:766358167382523944> **Datum vytvoření:** 12. května 2019`
+            content: (uptime) => `<:arrow:766358167382523944> **Vývojáři:** Npg, Alex, Alboom\n <:arrow:766358167382523944> **Knihovna:** [discord.js v14.14.1](https://discord.js.org/#/)\n <:arrow:766358167382523944> **Doba provozu** ${uptime}\n <:arrow:766358167382523944> **Datum vytvoření:** 12. května 2019`
         },
         statistics: {
             title: () => `**Statistiky**`,
@@ -111,7 +111,7 @@ module.exports = {
 
         dev: {
             title: () => `**Vývojáři :**`,
-            content: (uptime) => `[ThisDudeBoy](https://github.com/ThisDudeBoy)`
+            content: (uptime) => `[Npg](https://github.com/ThisDudeBoy)\n[Alex](https://discord.com)\n[Alboom](https://discord.com)`
         },
         statistics: {
             title: () => `**Inspirováno :**`,

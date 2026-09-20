@@ -1,5 +1,16 @@
 const Command = require("../../structures/Command.js"),
-{ EmbedBuilder } = require("discord.js");
+{ 
+    ContainerBuilder, 
+    TextDisplayBuilder, 
+    SeparatorBuilder, 
+    ActionRowBuilder, 
+    ButtonBuilder, 
+    ButtonStyle,
+    SectionBuilder,
+    ThumbnailBuilder,
+    MessageFlags 
+} = require("discord.js"),
+componentsV2 = require("../../helpers/componentsV2.js");
 
 class TestJoin extends Command {
     constructor (client) {
@@ -13,22 +24,79 @@ class TestJoin extends Command {
     }
 
     async run (message, args, data) {
-   
-        let embed = new EmbedBuilder()
-            .setTitle(message.language.testjoin.title())
-            .setDescription(message.language.testjoin.description())
-            .addFields(
-                { name: message.language.testjoin.fields.enabled(), value: (data.guild.join.enabled ? message.language.testjoin.enabled(data.guild.prefix) : message.language.testjoin.disabled(data.guild.prefix)) },
-                { name: message.language.testjoin.fields.message(), value: (data.guild.join.message || message.language.testjoin.notDefineds.message(data.guild.prefix)) },
-                { name: message.language.testjoin.fields.channel(), value: (data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.language.testjoin.notDefineds.channel(data.guild.prefix)) }
-            )
-            .setThumbnail(message.author.avatarURL())
-            .setColor(data.color)
-            .setFooter({ text: data.footer })
-            .setTimestamp();
-        message.channel.send({ embeds: [embed] });
+        const ownerId = message.author.id;
+        const color = componentsV2.parseColor(data.color);
+
+        const container = new ContainerBuilder()
+            .setAccentColor(color);
+
+        const title = new TextDisplayBuilder()
+            .setContent(`## ${message.language.testjoin.title()}`);
+        container.addTextDisplayComponents(title);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const descText = new TextDisplayBuilder()
+            .setContent(message.language.testjoin.description());
         
-        if(data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)){
+        const avatarUrl = message.author.avatarURL();
+        if (avatarUrl) {
+            try {
+                const descSection = new SectionBuilder()
+                    .addTextDisplayComponents(descText)
+                    .setThumbnailAccessory(
+                        new ThumbnailBuilder()
+                            .setURL(avatarUrl)
+                            .setDescription('Your Avatar')
+                    );
+                container.addSectionComponents(descSection);
+            } catch (e) {
+                container.addTextDisplayComponents(descText);
+            }
+        } else {
+            container.addTextDisplayComponents(descText);
+        }
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const enabledSection = new TextDisplayBuilder()
+            .setContent(`${message.language.testjoin.fields.enabled()}\n${(data.guild.join.enabled ? message.language.testjoin.enabled(data.guild.prefix) : message.language.testjoin.disabled(data.guild.prefix))}`);
+        container.addTextDisplayComponents(enabledSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const messageSection = new TextDisplayBuilder()
+            .setContent(`${message.language.testjoin.fields.message()}\n${(data.guild.join.message || message.language.testjoin.notDefineds.message(data.guild.prefix))}`);
+        container.addTextDisplayComponents(messageSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const channelSection = new TextDisplayBuilder()
+            .setContent(`${message.language.testjoin.fields.channel()}\n${(data.guild.join.channel ? `<#${data.guild.join.channel}>` : message.language.testjoin.notDefineds.channel(data.guild.prefix))}`);
+        container.addTextDisplayComponents(channelSection);
+
+        container.addSeparatorComponents(new SeparatorBuilder());
+
+        const buttonRow = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setCustomId(componentsV2.encodeCustomId('close', ownerId))
+                    .setLabel('Close')
+                    .setStyle(ButtonStyle.Danger)
+            );
+
+        container.addActionRowComponents(buttonRow);
+
+        const footer = new TextDisplayBuilder()
+            .setContent(`-# ${data.footer}`);
+        container.addTextDisplayComponents(footer);
+
+        message.channel.send({ 
+            components: [container], 
+            flags: MessageFlags.IsComponentsV2 
+        });
+        
+        if (data.guild.join.enabled && data.guild.join.message && data.guild.join.channel && message.guild.channels.cache.get(data.guild.join.channel)) {
             message.guild.channels.cache.get(data.guild.join.channel).send(this.client.functions.formatMessage(
                 data.guild.join.message,
                 message.member,
