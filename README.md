@@ -1,9 +1,9 @@
-<img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="https://cdn.discordapp.com/avatars/577236734245470228/fbde03ab00ece83b9f8e4df3ad26531b.png?size=128">  
+<img width="150" height="150" style="float: left; margin: 0 10px 0 0;" alt="InviteCount" src="[https://cdn.discordapp.com/avatars/577236734245470228/fbde03ab00ece83b9f8e4df3ad26531b.png?size=128](https://invite-count.xyz/images/logo.png)">  
 
 # InviteCount
 [![](https://img.shields.io/discord/753213979706261604.svg?logo=discord&colorB=7289DA)](https://discord.com/invite/6QsXCfw)
 [![](https://img.shields.io/badge/discord.js-v14.14.1-blue.svg?logo=npm)](https://github.com/discordjs)
-[![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/Androz2091)
+[![](https://img.shields.io/badge/paypal-donate-blue.svg)](https://patreon.com/chillbotdiscord)
 
 > InviteCount is used by + 1 500,000 users in + 1 300 servers!
 
