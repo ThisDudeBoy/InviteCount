@@ -126,7 +126,7 @@ Everyone can use user commands, there aren't restricted.
 +reload            Reload a command or languages.
 +servers-list      Show the servers list.
 ```
-The main bot [InviteCount](https://top.gg/bot/577236734245470228/invite) don't use this code anymore.<br>You can test the new version by adding them on your discord.
+[The main bot](https://top.gg/bot/577236734245470228) don't use this code anymore.<br>You can test the new version by adding them on your discord.
 ## Links
 
 *   [Discord](https://discord.com/invite/6QsXCfw)
